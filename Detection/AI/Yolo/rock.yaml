@@ -1,0 +1,68 @@
+## path to the images folder
+## and you have to make sure that the "labels" folder is also in the same directory
+
+## that means if images are like this : home/some_root/path1/images
+## then labels path should be: home/some_root/path1/labels
+
+## home/some_root/path1/ this needs to be same for images and labels
+## Understood thank you for the clarification
+
+## same for val
+
+## so you can copy in the directory of this folder or put path of your folder, both are okay
+## Just to keep everything orginized I will keep it with the yolo5-61 or what ever its called folder
+## that or the new folder you made
+
+## whichever you like, np for me ai ai sir
+
+
+##### This is the command, change the epoch and batch size(gpu can't handle large ones),
+## will just watch to guide you
+
+## Sorry about that was gona ask that the more epoch the better from what I read and was gona ask until what point.
+## So I am guessing from what u mentioned that 100 is the max this gpu can handle?
+
+## you can put infinite number of epochs (I prefer 100, shi prefers 30/50ish) but for batch size we have 24gb mem
+## so gpu can handle 34 images (max) in one batch if I remember correctly. That means it can process 34 images with size 640 and 3 color channels
+## in one batch, anything higher than that gives cuda out of memory
+
+## Yea I had the same issue when trying to run tensor flow on my 1080, had to bring down the array size to fit the epoch.
+## Something about how the model is trained which over loads the GPU memory did not really get the explanation but I get
+## The Idea, so I will use 100 for now. Okay I will try to run it then.
+
+
+## CUDA_LAUNCH_BLOCKING=1 python train.py --img 640 --epochs 100 --batch 40 --data rock.yaml --weights ''  --cfg yolov5l.yaml --patience 0
+
+## This is the command you mentioned right? To start training the model?yeah
+
+
+## if you start training, all the outputs will be saved in runs/train/exp8, next time exp9.. exp10 and goes on
+
+train: dataset/train/images
+val: dataset/val/images
+
+## image directory only
+## but the root folder should also contain the labels
+
+nc: 1
+
+names: ['ROCK']
+
+
+# Okay that should be enough for validation
+
+## cOOL EASY AS PIE
+
+## another thing, if you want to re-train the model, you need tje previous weight file
+
+## CUDA_LAUNCH_BLOCKING=1 python train.py --img 640 --epochs 100 --batch 40 --data rock.yaml --weights 'runs/train/exp8/weights/best.pt'  --cfg yolov5l.yaml --patience 0
+
+
+## once you finish this training, it will be saved in exp8. Next time exp9/ So if you want to re0train the model, you need to change the weight path
+## at the moment its blank, because we have started from scratch
+
+## Got it thank you, will it take less time to retrain or is it about the same.
+
+## you don't need to retrain for 100 epochs. 20 will do, so less time
+## work of art hahaha, got it so put more images then change the 100 to 20 for retraining
+## Thank you sifat

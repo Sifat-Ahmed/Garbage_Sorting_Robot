@@ -1,0 +1,9 @@
+#!/bin/sh
+#!/usr/bin/env python3
+
+
+while true
+do
+  python3 /home/eii/scala/scara_robot/src/main_gui.py
+done
+
